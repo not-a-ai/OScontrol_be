@@ -28,6 +28,14 @@ const OrdemServico = sequelize.define('OrdemServico', {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
+  gestorId: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
+  tecnicoId: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  }
 }, {
   tableName: 'Ordem_Servicos',
 });

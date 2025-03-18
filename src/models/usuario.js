@@ -1,5 +1,6 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../database.js';
+import bcrypt from 'bcrypt';
 
 const Usuario = sequelize.define('Usuario', {
   nome: {
@@ -15,8 +16,16 @@ const Usuario = sequelize.define('Usuario', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  tipo: {
+    type: DataTypes.ENUM('gestor', 'tecnico'),
+    allowNull: false
+  }
 }, {
   tableName: 'Usuarios'
 });
+
+Usuario.prototype.validPassword = async function (senha) {
+  return bcrypt.compare(senha, this.senha_hash);
+};
 
 export default Usuario;

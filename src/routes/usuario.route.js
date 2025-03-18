@@ -5,9 +5,9 @@ import bcrypt from 'bcrypt';
 const usuarioRoutes = express.Router();
 
 usuarioRoutes.post('/', async (req, res) => {
-    const { nome, email, senha } = req.body;
+    const { nome, email, senha , tipo } = req.body;
   
-    if (!nome || !email || !senha) {
+    if (!nome || !email || !senha || !tipo) {
       return res.status(400).json({ erro: 'Todos os campos são obrigatórios.' });
     }
   
@@ -20,7 +20,7 @@ usuarioRoutes.post('/', async (req, res) => {
   
       const senha_hash = await bcrypt.hash(senha, 10);
   
-      const usuarioCriado = await Usuario.create({ nome, email, senha_hash });
+      const usuarioCriado = await Usuario.create({ nome, email, senha_hash , tipo});
   
       return res.status(201).json(usuarioCriado); 
     } catch (err) {

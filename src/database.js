@@ -9,7 +9,7 @@ const sequelize = new Sequelize({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   port: process.env.DB_PORT,
-  dialect: 'postgres', // ou o dialect do seu banco de dados (mysql, sqlite, etc.)
+  dialect: 'postgres'
 });
 
 (async () => {
@@ -22,3 +22,4 @@ const sequelize = new Sequelize({
 })();
 
 export default sequelize;
+
