@@ -28,11 +28,11 @@ const OrdemServico = sequelize.define('OrdemServico', {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  gestorId: {
+  gestor_id: {
     type: DataTypes.INTEGER,
     allowNull: false
   },
-  tecnicoId: {
+  tecnico_id: {
     type: DataTypes.INTEGER,
     allowNull: false
   }

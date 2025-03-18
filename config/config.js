@@ -9,9 +9,7 @@ export default {
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
     dialect: 'postgres',
-    migrationStorageTableName: 'sequelize_meta',
-    migrations: ['src/sequelize/migrations/*.js'], // Caminho para migrations
-    models: ['src/sequelize/models/*.js'],
+    migrationStorageTableName: 'sequelize_meta'
   },
   test: {
     username: process.env.DB_USERNAME,
@@ -26,8 +24,6 @@ export default {
     database: process.env.DB_NAME,
     host: process.env.DB_HOST,
     dialect: 'postgres',
-    migrationStorageTableName: 'sequelize_meta',
-    migrations: ['src/sequelize/migrations/*.js'],
-    models: ['src/sequelize/models/*.js'],
+    migrationStorageTableName: 'sequelize_meta'
   },
 }; 

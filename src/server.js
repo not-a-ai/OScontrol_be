@@ -20,9 +20,9 @@ sequelize.sync({ alter: true })
 
 // Rotas
 app.use('/usuario', usuarioRoutes);
-app.use('/os', osRoutes);
+// app.use('/os', osRoutes);
 app.use('/auth', authRoutes);
-app.use('/ordens-servico', ordemServicoRoutes);
+app.use('/os', ordemServicoRoutes);
 
 
 app.listen(3000, () => {

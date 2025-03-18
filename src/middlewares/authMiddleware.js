@@ -1,15 +1,28 @@
-import  verify  from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';  
 
-export default (req, res, next) => {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
+const authMiddleware = async (req, res, next) => {
+  const token = req.headers['authorization']?.split(' ')[1];  
 
-  if (!token) return res.status(401).json({ message: 'Token não fornecido' });
+  if (!token) {
+    return res.status(401).json({ erro: 'Token não fornecido.' });
+  }
 
-  verify(token, process.env.JWT_SECRET, (err, user) => {
-    if (err) return res.status(403).json({ message: 'Token inválido' });
+  try {
+    jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
+      if (err) {
+        return res.status(401).json({ erro: 'Token inválido.' });
+      }
+    
+      req.user = decoded;  
 
-    req.user = user;
-    next();
-  });
+      if (decoded.tipo !== 'gestor') {
+        return res.status(403).json({ erro: 'Acesso negado. Você não tem permissão.' });
+      }
+      next(); 
+    });
+  } catch (error) {
+    return res.status(500).json({ erro: 'Erro ao verificar o token.', detalhes: error.message });
+  }
 };
+
+export default authMiddleware;
