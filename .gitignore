@@ -1,0 +1,38 @@
+# Node modules
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+jspm_packages/
+
+# Build output
+/dist
+/build
+/public
+
+# .env file for environment variables
+.env
+
+# IDE or editor directories and files
+.vscode/
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Test coverage
+coverage/
+
+# Optional: If you are using Docker
+.docker/
+
+# Optional: If you are using npm package-lock or yarn.lock
+package-lock.json
+yarn.lock
