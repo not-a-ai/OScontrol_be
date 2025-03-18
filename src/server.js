@@ -1,7 +1,8 @@
 import express from 'express';
-import bodyParser from 'body-parser';
 import sequelize from './database.js';
-import usuarioRoutes from './routes/usuario.js';
+import usuarioRoutes from './routes/usuario.route.js';
+import osRoutes from './routes/os.route.js';
+
 
 const app = express();
 app.use(express.json());
@@ -17,6 +18,7 @@ sequelize.sync({ alter: true })
 
 // Rotas
 app.use('/usuario', usuarioRoutes);
+app.use('/os', osRoutes);
 
 app.listen(3000, () => {
   console.log('Servidor rodando na porta 3000');

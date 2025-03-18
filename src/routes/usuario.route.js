@@ -2,9 +2,9 @@ import express from 'express';
 import Usuario from '../models/usuario.js';
 import bcrypt from 'bcrypt';
 
-const router = express.Router();
+const usuarioRoutes = express.Router();
 
-router.post('/', async (req, res) => {
+usuarioRoutes.post('/', async (req, res) => {
     const { nome, email, senha } = req.body;
   
     if (!nome || !email || !senha) {
@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
 });
   
 
-router.get('/', async (req, res) => {
+usuarioRoutes.get('/', async (req, res) => {
   try {
     const usuarios = await Usuario.findAll();
     return res.status(200).json(usuarios);
@@ -38,7 +38,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.delete('/:id', async (req, res) => {
+usuarioRoutes.delete('/:id', async (req, res) => {
     const { id } = req.params;
   
     try {
@@ -56,7 +56,7 @@ router.delete('/:id', async (req, res) => {
     }
 });
   
-router.put('/:id', async (req, res) => {
+usuarioRoutes.put('/:id', async (req, res) => {
     const { id } = req.params;
     const { nome, email, senha } = req.body;
   
@@ -86,4 +86,4 @@ router.put('/:id', async (req, res) => {
 
 
 
-export default router;
+export default usuarioRoutes;
