@@ -28,4 +28,11 @@ Usuario.prototype.validPassword = async function (senha) {
   return bcrypt.compare(senha, this.senha_hash);
 };
 
+// Função para definir associações
+Usuario.associate = (models) => {
+  // Um usuário pode ter muitas ordens (gestor ou técnico)
+  Usuario.hasMany(models.OrdemServico, { foreignKey: 'gestor_id', as: 'ordensGerenciadas' });
+  Usuario.hasMany(models.OrdemServico, { foreignKey: 'tecnico_id', as: 'ordensTecnico' });
+};
+
 export default Usuario;

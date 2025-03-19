@@ -40,4 +40,12 @@ const OrdemServico = sequelize.define('OrdemServico', {
   tableName: 'Ordem_Servicos',
 });
 
+OrdemServico.associate = (models) => {
+  // Relacionamento com Usuário (Gestor)
+  OrdemServico.belongsTo(models.Usuario, { foreignKey: 'gestor_id', as: 'gestor' });
+  
+  // Relacionamento com Usuário (Técnico)
+  OrdemServico.belongsTo(models.Usuario, { foreignKey: 'tecnico_id', as: 'tecnico' });
+};
+
 export default OrdemServico;

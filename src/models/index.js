@@ -1,11 +1,16 @@
-const User = require('./user')(sequelize);
-const OrdemServico = require('./ordemServico')(sequelize);
+import sequelize from '../database.js';
+import Usuario from './usuario.js';
+import OrdemServico from './ordemServico.js';
 
-// Relacionamento
-User.hasMany(OrdemServico, { foreignKey: 'gestorId', as: 'ordensGerenciadas' });
-User.hasMany(OrdemServico, { foreignKey: 'tecnicoId', as: 'ordensTecnico' });
+// Definir as associações
+Usuario.hasMany(OrdemServico, { foreignKey: 'gestor_id', as: 'ordensGerenciadas' });
+Usuario.hasMany(OrdemServico, { foreignKey: 'tecnico_id', as: 'ordensTecnico' });
 
-OrdemServico.belongsTo(User, { foreignKey: 'gestorId', as: 'gestor' });
-OrdemServico.belongsTo(User, { foreignKey: 'tecnicoId', as: 'tecnico' });
+OrdemServico.belongsTo(Usuario, { foreignKey: 'gestor_id', as: 'gestor' });
+OrdemServico.belongsTo(Usuario, { foreignKey: 'tecnico_id', as: 'tecnico' });
 
-export default { User, OrdemServico };
+// Certifique-se de que está chamando o método associate para cada modelo
+Usuario.associate && Usuario.associate(sequelize.models);
+OrdemServico.associate && OrdemServico.associate(sequelize.models);
+
+export default { Usuario, OrdemServico };

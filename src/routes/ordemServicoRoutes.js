@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { atualizar, criar, visualizar } from '../controllers/ordemServicoController.js';
-import authGestor from '../middlewares/authMiddleware.js';
+import authGestor from '../middlewares/authGestor.js';
 import authOS from '../middlewares/authOS.js';
 import authToken from '../middlewares/authToken.js';
 
