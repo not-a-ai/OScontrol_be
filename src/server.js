@@ -1,13 +1,22 @@
 import express from 'express';
 import sequelize from './database.js';
 import usuarioRoutes from './routes/usuario.route.js';
-import osRoutes from './routes/os.route.js';
 import authRoutes from './routes/authRoutes.js';
 import ordemServicoRoutes from './routes/ordemServicoRoutes.js';
 
 
 const app = express();
 app.use(express.json());
+
+// Rotas
+app.use('/usuario', usuarioRoutes);
+app.use('/auth', authRoutes);
+app.use('/os', ordemServicoRoutes);
+
+
+app.listen(3000, () => {
+  console.log('Servidor rodando na porta 3000');
+});
 
 // Banco de dados
 sequelize.sync({ alter: true })
@@ -18,13 +27,3 @@ sequelize.sync({ alter: true })
     console.error('Erro ao sincronizar o banco de dados:', err);
   });
 
-// Rotas
-app.use('/usuario', usuarioRoutes);
-// app.use('/os', osRoutes);
-app.use('/auth', authRoutes);
-app.use('/os', ordemServicoRoutes);
-
-
-app.listen(3000, () => {
-  console.log('Servidor rodando na porta 3000');
-});
