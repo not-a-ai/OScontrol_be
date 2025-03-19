@@ -31,13 +31,10 @@ export async function criar(req, res) {
     
 }
 export async function visualizar(req, res) {
+    console.log(req.params.id)
     const ordem = await OrdemServico.findByPk(req.params.id);
 
     if (!ordem) return res.status(404).json({ message: 'Ordem não encontrada' });
-
-    if (ordem.tecnicoId !== req.user.id && ordem.gestorId !== req.user.id) {
-        return res.status(403).json({ message: 'Sem permissão' });
-    }
 
     return res.json(ordem);
 }
