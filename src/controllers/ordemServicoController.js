@@ -41,3 +41,22 @@ export async function visualizar(req, res) {
 
     return res.json(ordem);
 }
+
+export const atualizar = async (req, res) => {
+  const ordem = req.ordem; 
+
+  const camposPermitidos = ['descricao', 'status', 'data_fechamento', 'valor_final', 'tecnico_id'];
+  camposPermitidos.forEach((campo) => {
+  if (req.body[campo] !== undefined) {
+    ordem[campo] = req.body[campo];
+  }
+});
+
+
+  try {
+    await ordem.save();
+    res.status(200).json({ mensagem: 'Ordem de Serviço atualizada com sucesso.', ordem });
+  } catch (error) {
+    res.status(500).json({ erro: 'Erro ao atualizar a Ordem de Serviço.', detalhes: error.message });
+  }
+};
