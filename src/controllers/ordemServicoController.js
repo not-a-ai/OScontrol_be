@@ -40,7 +40,6 @@ export async function criar(req, res) {
   }
 }
 export async function visualizar(req, res) {
-  console.log(req.params.id);
   const ordem = await OrdemServico.findByPk(req.params.id);
 
   if (!ordem) return res.status(404).json({ message: "Ordem não encontrada" });
@@ -96,6 +95,28 @@ export const atualizar = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       erro: "Erro ao atualizar a Ordem de Serviço.",
+      detalhes: error.message,
+    });
+  }
+};
+
+export const deletar = async (req, res) => {
+  try {
+    const ordem = await OrdemServico.findByPk(req.params.id);
+
+    if (!ordem) {
+      return res.status(404).json({ erro: "Ordem de Serviço não encontrada." });
+    }
+
+    await ordem.destroy();
+
+    return res.status(200).json({
+      mensagem: "Ordem de Serviço deletada com sucesso.",
+      ordem,
+    });
+  } catch (error) {
+    res.status(500).json({
+      erro: "Erro ao deletar a Ordem de Serviço.",
       detalhes: error.message,
     });
   }
