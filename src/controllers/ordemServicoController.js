@@ -57,7 +57,7 @@ export async function visualizarTodas(req, res) {
     });
 
     if (!ordens || ordens.length === 0) {
-      return res.status(404).json({
+      return res.status(200).json({
         message: "Nenhuma ordem de serviço encontrada para este usuário",
       });
     }
