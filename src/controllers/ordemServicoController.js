@@ -6,17 +6,18 @@ export async function criar(req, res) {
     const {
       descricao,
       client_id,
-      gestor_id,
       tecnico_id,
       status,
       data_abertura,
+      data_fechamento,
+      valor_final,
     } = req.body;
-    const gestorId = req.user?.id;
+    const gestor_id = req.user?.id;
 
-    if (!descricao || !tecnico_id || !client_id) {
+    if (!descricao || !tecnico_id) {
       return res.status(400).json({
         erro: "Campos obrigatórios estão faltando.",
-        detalhes: { descricao, tecnico_id, client_id },
+        detalhes: { descricao, tecnico_id },
       });
     }
 
@@ -24,10 +25,11 @@ export async function criar(req, res) {
       descricao,
       tecnico_id,
       client_id,
-      gestorId,
-      data_abertura,
       gestor_id,
+      data_abertura,
       status,
+      data_fechamento,
+      valor_final,
     });
 
     return res.status(201).json(ordemServico);
