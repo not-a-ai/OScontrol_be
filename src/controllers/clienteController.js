@@ -55,7 +55,6 @@ export async function buscarClientePorId(req, res) {
 }
 
 export async function atualizarCliente(req, res) {
-  console.log(req);
   try {
     const { id } = req.params;
     const { nome, telefone, email, endereco } = req.body;
@@ -67,8 +66,6 @@ export async function atualizarCliente(req, res) {
         user_id: user_id,
       },
     });
-
-    console.log("cliente ", cliente);
 
     if (!cliente) {
       return res.status(404).json({

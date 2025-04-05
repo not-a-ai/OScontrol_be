@@ -5,6 +5,7 @@ import authRoutes from "./routes/authRoutes.js";
 import ordemServicoRoutes from "./routes/ordemServicoRoutes.js";
 import cors from "cors";
 import clientesRouter from "./routes/clientesRoutes.js";
+import servicoRoutes from "./routes/servicosRoutes.js";
 
 const app = express();
 app.use(express.json());
@@ -28,3 +29,4 @@ app.use("/usuario", usuarioRoutes);
 app.use("/auth", authRoutes);
 app.use("/os", ordemServicoRoutes);
 app.use("/clientes", clientesRouter);
+app.use("/servico", servicoRoutes);
