@@ -1,5 +1,7 @@
+import Cliente from "../models/cliente.js";
 import OrdemServico from "../models/ordem_servicos.js";
 import { Op } from "sequelize";
+import Usuario from "../models/usuario.js";
 
 export async function criar(req, res) {
   try {
@@ -42,7 +44,14 @@ export async function criar(req, res) {
   }
 }
 export async function visualizar(req, res) {
-  const ordem = await OrdemServico.findByPk(req.params.id);
+  const ordem = await OrdemServico.findByPk(req.params.id, {
+    include: [
+      {
+        model: Cliente,
+        as: "cliente",
+      },
+    ],
+  });
 
   if (!ordem) return res.status(404).json({ message: "Ordem não encontrada" });
 
@@ -56,6 +65,15 @@ export async function visualizarTodas(req, res) {
       where: {
         [Op.or]: [{ gestor_id: userId }, { tecnico_id: userId }],
       },
+      include: [
+        {
+          model: Cliente,
+          as: "cliente",
+          attributes: ["id", "nome", "email"],
+        },
+        { model: Usuario, as: "gestor" },
+        { model: Usuario, as: "tecnico" },
+      ],
     });
 
     if (!ordens || ordens.length === 0) {

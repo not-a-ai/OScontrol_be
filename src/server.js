@@ -12,17 +12,19 @@ app.use(express.json());
 app.use(cors());
 
 // Banco de dados
-sequelize
-  .sync({ alter: true })
-  .then(() => {
-    app.listen(3000, () => {
-      console.log("Servidor rodando na porta 3000");
-    });
-    console.log("Banco de dados sincronizado!");
-  })
-  .catch((err) => {
-    console.error("Erro ao sincronizar o banco de dados:", err);
-  });
+(async () => {
+  try {
+    await sequelize.authenticate();
+    console.log("Conectado com sucesso.");
+
+    await sequelize.sync({ force: true }); // ou force: true, se for dev
+    console.log("Modelos sincronizados com o banco.");
+
+    app.listen(3000, () => console.log("Servidor rodando!"));
+  } catch (err) {
+    console.error("Erro ao conectar:", err);
+  }
+})();
 
 // Rotas
 app.use("/usuario", usuarioRoutes);

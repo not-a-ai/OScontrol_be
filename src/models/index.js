@@ -1,22 +1,24 @@
 import sequelize from "../database.js";
+
+// Importa os models
 import Usuario from "./usuario.js";
-import OrdemServico from "./ordemServico.js";
+import Cliente from "./cliente.js";
+import OrdemServico from "./ordem_servicos.js";
 
-// Definir as associações
-Usuario.hasMany(OrdemServico, {
-  foreignKey: "gestor_id",
-  as: "ordensGerenciadas",
+// Inicializa os models (se necessário)
+const models = {
+  Usuario,
+  Cliente,
+  OrdemServico,
+};
+
+// Executa as associações, passando todos os models como argumento
+Object.keys(models).forEach((modelName) => {
+  if (models[modelName].associate) {
+    models[modelName].associate(models);
+  }
 });
-Usuario.hasMany(OrdemServico, {
-  foreignKey: "tecnico_id",
-  as: "ordensTecnico",
-});
 
-OrdemServico.belongsTo(Usuario, { foreignKey: "gestor_id", as: "gestor" });
-OrdemServico.belongsTo(Usuario, { foreignKey: "tecnico_id", as: "tecnico" });
-
-// Certifique-se de que está chamando o método associate para cada modelo
-Usuario.associate && Usuario.associate(sequelize.models);
-OrdemServico.associate && OrdemServico.associate(sequelize.models);
-
-export default { Usuario, OrdemServico };
+// Exporta os models e a instância do sequelize
+export { sequelize };
+export default models;

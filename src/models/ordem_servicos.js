@@ -29,14 +29,30 @@ const OrdemServico = sequelize.define(
     client_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: "Clientes",
+        key: "id",
+      },
+      onDelete: "CASCADE",
+      onUpdate: "CASCADE",
     },
     gestor_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: "Usuarios",
+        key: "id",
+      },
+      onDelete: "CASCADE",
     },
     tecnico_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: "Usuarios",
+        key: "id",
+      },
+      onDelete: "CASCADE",
     },
   },
   {
@@ -49,10 +65,13 @@ OrdemServico.associate = (models) => {
     foreignKey: "gestor_id",
     as: "gestor",
   });
-
   OrdemServico.belongsTo(models.Usuario, {
     foreignKey: "tecnico_id",
     as: "tecnico",
+  });
+  OrdemServico.belongsTo(models.Cliente, {
+    foreignKey: "client_id",
+    as: "cliente",
   });
 };
 

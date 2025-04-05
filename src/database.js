@@ -1,5 +1,5 @@
-import { Sequelize } from 'sequelize';
-import dotenv from 'dotenv';
+import { Sequelize } from "sequelize";
+import dotenv from "dotenv";
 
 dotenv.config();
 
@@ -9,17 +9,7 @@ const sequelize = new Sequelize({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   port: process.env.DB_PORT,
-  dialect: 'postgres'
+  dialect: "postgres",
 });
 
-(async () => {
-  try {
-    await sequelize.authenticate();
-    console.log('Conexão com o banco de dados estabelecida com sucesso.');
-  } catch (error) {
-    console.error('Não foi possível conectar ao banco de dados:', error);
-  }
-})();
-
 export default sequelize;
-
