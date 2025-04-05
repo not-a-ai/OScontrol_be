@@ -1,7 +1,8 @@
-import Cliente from "../models/cliente.js";
-import OrdemServico from "../models/ordem_servicos.js";
+import models from "../models/index.js";
 import { Op } from "sequelize";
 import Usuario from "../models/usuario.js";
+
+const { OrdemServico, Cliente } = models;
 
 export async function criar(req, res) {
   try {

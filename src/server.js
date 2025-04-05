@@ -17,7 +17,7 @@ app.use(cors());
     await sequelize.authenticate();
     console.log("Conectado com sucesso.");
 
-    await sequelize.sync({ force: true }); // ou force: true, se for dev
+    await sequelize.sync({ alter: true }); // ou force: true, se for dev
     console.log("Modelos sincronizados com o banco.");
 
     app.listen(3000, () => console.log("Servidor rodando!"));
