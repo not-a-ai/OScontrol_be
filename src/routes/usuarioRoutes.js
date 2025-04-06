@@ -52,7 +52,10 @@ usuarioRoutes.get("/", async (req, res) => {
 
 usuarioRoutes.get("/tecnicos", authToken, authGestor, async (req, res) => {
   try {
-    const tecnicos = await Usuario.findAll({ where: { tipo: "tecnico" } });
+    const tecnicos = await Usuario.findAll({
+      where: { tipo: "tecnico" },
+      attributes: ["id", "nome", "email"],
+    });
     return res.status(200).json(tecnicos);
   } catch (e) {
     return res
