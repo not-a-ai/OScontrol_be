@@ -41,6 +41,7 @@ export async function visualizarTodas(req, res) {
 
     const servico = await Servico.findAll({
       where: { user_id: userId },
+      attributes: ["id", "nome", "descricao", "precoBase"],
     });
 
     if (!servico || servico.length === 0) {

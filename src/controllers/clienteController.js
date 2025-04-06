@@ -22,7 +22,10 @@ export async function criarCliente(req, res) {
 export async function listarClientes(req, res) {
   try {
     const user_id = req.userId;
-    const clientes = await Cliente.findAll({ where: { user_id: user_id } });
+    const clientes = await Cliente.findAll({
+      where: { user_id: user_id },
+      attributes: ["id", "nome", "email", "telefone", "endereco"],
+    });
     return res.json(clientes);
   } catch (error) {
     console.error(error);
@@ -39,6 +42,7 @@ export async function buscarClientePorId(req, res) {
         id,
         user_id: user_id,
       },
+      attributes: ["id", "nome", "email", "telefone", "endereco"],
     });
 
     if (!cliente) {
