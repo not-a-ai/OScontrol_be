@@ -73,6 +73,10 @@ OrdemServico.associate = (models) => {
     foreignKey: "client_id",
     as: "cliente",
   });
+  OrdemServico.hasMany(models.Atendimento, {
+    foreignKey: "ordem_id",
+    as: "atendimentos",
+  });
 };
 
 export default OrdemServico;

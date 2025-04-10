@@ -78,29 +78,33 @@ Técnico: acesso às ordens de serviço atribuídas.
 
 ## 📌 Endpoints Principais
 
-| Método | Rota                 | Descrição                         |
-| ------ | -------------------- | --------------------------------- |
-| POST   | `/login`             | Realiza login e retorna token JWT |
-| POST   | `/usuario`           | Cria um novo usuário              |
-| GET    | `/usuario/tecnicos`  | Lista usuários com perfil técnico |
-| GET    | `/usuario/:id`       | Busca um usuário por ID           |
-| PUT    | `/usuario/:id`       | Atualiza dados de um usuário      |
-| DELETE | `/usuario/:id`       | Remove um usuário                 |
-| POST   | `/clientes`          | Cria um novo cliente              |
-| GET    | `/clientes`          | Lista todos os clientes           |
-| GET    | `/clientes/:id`      | Busca um cliente por ID           |
-| PUT    | `/clientes/:id`      | Atualiza dados de um cliente      |
-| DELETE | `/clientes/:id`      | Remove um cliente                 |
-| POST   | `/servico`           | Cria um novo serviço              |
-| GET    | `/servico`           | Lista todos os serviços           |
-| GET    | `/servico/:id`       | Busca um serviço por ID           |
-| PUT    | `/servico/:id`       | Atualiza dados de um serviço      |
-| DELETE | `/servico/:id`       | Remove um serviço                 |
-| POST   | `/ordem-servico`     | Cria uma nova ordem de serviço    |
-| GET    | `/ordem-servico`     | Lista todas as ordens de serviço  |
-| GET    | `/ordem-servico/:id` | Detalha uma ordem de serviço      |
-| PUT    | `/ordem-servico/:id` | Atualiza uma ordem de serviço     |
-| DELETE | `/ordem-servico/:id` | Remove uma ordem de serviço       |
+| Método | Rota                      | Descrição                                     |
+| ------ | ------------------------- | --------------------------------------------- |
+| POST   | `/login`                  | Realiza login e retorna token JWT             |
+| POST   | `/usuario`                | Cria um novo usuário                          |
+| GET    | `/usuario/tecnicos`       | Lista usuários com perfil técnico             |
+| GET    | `/usuario/:id`            | Busca um usuário por ID                       |
+| PUT    | `/usuario/:id`            | Atualiza dados de um usuário                  |
+| DELETE | `/usuario/:id`            | Remove um usuário                             |
+| POST   | `/clientes`               | Cria um novo cliente                          |
+| GET    | `/clientes`               | Lista todos os clientes                       |
+| GET    | `/clientes/:id`           | Busca um cliente por ID                       |
+| PUT    | `/clientes/:id`           | Atualiza dados de um cliente                  |
+| DELETE | `/clientes/:id`           | Remove um cliente                             |
+| POST   | `/servico`                | Cria um novo serviço                          |
+| GET    | `/servico`                | Lista todos os serviços                       |
+| GET    | `/servico/:id`            | Busca um serviço por ID                       |
+| PUT    | `/servico/:id`            | Atualiza dados de um serviço                  |
+| DELETE | `/servico/:id`            | Remove um serviço                             |
+| POST   | `/ordem-servico`          | Cria uma nova ordem de serviço                |
+| GET    | `/ordem-servico`          | Lista todas as ordens de serviço              |
+| GET    | `/ordem-servico/:id`      | Detalha uma ordem de serviço                  |
+| PUT    | `/ordem-servico/:id`      | Atualiza uma ordem de serviço                 |
+| DELETE | `/ordem-servico/:id`      | Remove uma ordem de serviço                   |
+| POST   | `/atendimentos`           | Cria um novo atendimento técnico              |
+| GET    | `/atendimentos/:ordem_id` | Lista os atendimentos de uma ordem de serviço |
+| GET    | `/atendimentos`           | Lista os atendimentos realizados              |
+| DELETE | `/atendimentos/:id`       | Remove um atendimento criado pelo técnico     |
 
 ## 👩‍💻 Desenvolvedora
 

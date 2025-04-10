@@ -4,12 +4,14 @@ import sequelize from "../database.js";
 import Usuario from "./usuario.js";
 import Cliente from "./cliente.js";
 import OrdemServico from "./ordem_servicos.js";
+import Atendimento from "./atendimento.js";
 
 // Inicializa os models (se necessário)
 const models = {
   Usuario,
   Cliente,
   OrdemServico,
+  Atendimento,
 };
 
 // Executa as associações, passando todos os models como argumento

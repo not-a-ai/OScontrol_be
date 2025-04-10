@@ -6,6 +6,7 @@ import ordemServicoRoutes from "./routes/ordemServicoRoutes.js";
 import cors from "cors";
 import clientesRouter from "./routes/clientesRoutes.js";
 import servicoRoutes from "./routes/servicosRoutes.js";
+import atendimentoRoutes from "./routes/atendimentoRoutes.js";
 
 const app = express();
 app.use(express.json());
@@ -32,3 +33,4 @@ app.use("/auth", authRoutes);
 app.use("/os", ordemServicoRoutes);
 app.use("/clientes", clientesRouter);
 app.use("/servico", servicoRoutes);
+app.use("/atendimentos", atendimentoRoutes);
