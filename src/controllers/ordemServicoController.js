@@ -1,8 +1,7 @@
-import models from "../models/index.js";
 import { Op } from "sequelize";
-import Usuario from "../models/usuario.js";
+import models from "../models/index.js";
 
-const { OrdemServico, Cliente } = models;
+const { Atendimento, Cliente, OrdemServico, Usuario } = models;
 
 export async function criar(req, res) {
   try {
@@ -50,7 +49,11 @@ export async function visualizar(req, res) {
       {
         model: Cliente,
         as: "cliente",
+        attributes: ["id", "nome", "email", "endereco", "telefone"],
       },
+      { model: Usuario, as: "gestor", attributes: ["id", "nome", "email"] },
+      { model: Usuario, as: "tecnico", attributes: ["id", "nome", "email"] },
+      { model: Atendimento, as: "atendimentos" },
     ],
   });
 
@@ -72,8 +75,9 @@ export async function visualizarTodas(req, res) {
           as: "cliente",
           attributes: ["id", "nome", "email"],
         },
-        { model: Usuario, as: "gestor" },
-        { model: Usuario, as: "tecnico" },
+        { model: Usuario, as: "gestor", attributes: ["id", "nome", "email"] },
+        { model: Usuario, as: "tecnico", attributes: ["id", "nome", "email"] },
+        { model: Atendimento, as: "atendimentos" },
       ],
     });
 
